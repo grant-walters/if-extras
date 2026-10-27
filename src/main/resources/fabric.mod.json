@@ -9,7 +9,7 @@
 	],
 	"contact": {
 		"homepage": "https://bowzin.com/",
-		"sources": ""
+		"sources": "https://github.com/grant-walters/if-extras"
 	},
 	"license": "GPL-3.0-or-later",
 	"icon": "assets/ife/icon.png",
