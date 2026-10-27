@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "ife",
+	"version": "${version}",
+	"name": "IF: Extras",
+	"description": "Provides additional QoL and improvements for ImagineFun!",
+	"authors": [
+		"Bowzin"
+	],
+	"contact": {
+		"homepage": "https://bowzin.com/",
+		"sources": ""
+	},
+	"license": "GPL-3.0-or-later",
+	"icon": "assets/ife/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.bowzin.ife.client.IFEClient"
+		]
+	},
+	"mixins": [
+		{
+			"config": "ife.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*",
+		"imaginefunutils": ">=0.0.9"
+	}
+}

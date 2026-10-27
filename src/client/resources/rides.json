@@ -1,0 +1,241 @@
+{
+  "source": "ImagineMoreFun docs/validation/IMAGINEFUN_RIDE_IDS_2026-07.md (MIT), commit c7def26; durations are server durationMs observed Jul-Aug 2026",
+  "rides": {
+    "alice": {
+      "name": "Alice in Wonderland",
+      "durationMs": 206400,
+      "note": "Observed range 206399-206400 ms"
+    },
+    "astroorbiter": {
+      "name": "Astro Orbitor",
+      "durationMs": 87800
+    },
+    "autopia": {
+      "name": "Autopia",
+      "durationMs": 246067
+    },
+    "btm": {
+      "name": "Big Thunder Mountain Railroad",
+      "durationMs": 201350
+    },
+    "buzz": {
+      "name": "Buzz Lightyear Astro Blasters",
+      "durationMs": 257499
+    },
+    "casey": {
+      "name": "Casey Jr. Circus Train",
+      "durationMs": 152000
+    },
+    "gadgets": {
+      "name": "Chip 'N' Dale's Gadget Coaster",
+      "durationMs": 44050
+    },
+    "canoe": {
+      "name": "Davy Crockett's Explorer Canoes",
+      "durationMs": 521100
+    },
+    "monorail": {
+      "name": "Disneyland Monorail",
+      "durationMs": 485000
+    },
+    "dlrr": {
+      "name": "Disneyland Railroad",
+      "durationMs": 1025825
+    },
+    "dumbo": {
+      "name": "Dumbo the Flying Elephant",
+      "durationMs": 104699
+    },
+    "tikiroom": {
+      "name": "Enchanted Tiki Room",
+      "durationMs": 750000
+    },
+    "nemo": {
+      "name": "Finding Nemo Submarine Voyage",
+      "durationMs": 790450
+    },
+    "ff": {
+      "name": "Flik's Flyers",
+      "durationMs": 98815
+    },
+    "goldenzephyr": {
+      "name": "Golden Zephyr",
+      "durationMs": 107750,
+      "note": "Observed range 107748-107750 ms"
+    },
+    "goofy": {
+      "name": "Goofy's Sky School",
+      "durationMs": 90600,
+      "note": "Observed range 90599-90600 ms"
+    },
+    "lincoln": {
+      "name": "Great Moments with Mr. Lincoln",
+      "durationMs": 371948
+    },
+    "grr": {
+      "name": "Grizzly River Run",
+      "durationMs": 361017
+    },
+    "guardians": {
+      "name": "Guardians of the Galaxy: Mission Breakout",
+      "durationMs": 121990
+    },
+    "gotgmad": {
+      "name": "Guardians of the Galaxy: Monsters After Dark",
+      "durationMs": 123411
+    },
+    "hm": {
+      "name": "Haunted Mansion",
+      "durationMs": 445150
+    },
+    "hmh": {
+      "name": "Haunted Mansion Holiday",
+      "durationMs": 445115
+    },
+    "heimlich": {
+      "name": "Heimlich's Chew Chew Train",
+      "durationMs": 101990
+    },
+    "hyperspace": {
+      "name": "Hyperspace Mountain",
+      "durationMs": null,
+      "note": "Seasonal variant; ID confirmed, duration not yet observed"
+    },
+    "incredi": {
+      "name": "Incredicoaster",
+      "durationMs": 135000
+    },
+    "indy": {
+      "name": "Indiana Jones Adventure",
+      "durationMs": 226500,
+      "note": "Observed range 226499-226500 ms"
+    },
+    "eww": {
+      "name": "Inside Out Emotional Whirlwind",
+      "durationMs": 98797
+    },
+    "jcc": {
+      "name": "Jessie's Critter Carousel",
+      "durationMs": 120706
+    },
+    "jj": {
+      "name": "Jumpin' Jellyfish",
+      "durationMs": 44804
+    },
+    "jc": {
+      "name": "Jungle Cruise",
+      "durationMs": 431450
+    },
+    "kingarthur": {
+      "name": "King Arthur Carrousel",
+      "durationMs": 129701
+    },
+    "ariel": {
+      "name": "The Little Mermaid: Ariel's Undersea Adventure",
+      "durationMs": 369000
+    },
+    "llr": {
+      "name": "Luigi's Rollickin' Roadsters",
+      "durationMs": 94699,
+      "note": "IMF also saw one anomalous 10908 ms run"
+    },
+    "teacups": {
+      "name": "Mad Tea Party",
+      "durationMs": 90000,
+      "note": "Observed range 89997-90000 ms"
+    },
+    "mainstreetcar": {
+      "name": "Main Street Carriages",
+      "durationMs": 381050
+    },
+    "pooh": {
+      "name": "The Many Adventures of Winnie the Pooh",
+      "durationMs": 199850
+    },
+    "mjj": {
+      "name": "Mater's Junkyard Jamboree",
+      "durationMs": 89900
+    },
+    "matterhorn": {
+      "name": "Matterhorn Bobsleds",
+      "durationMs": 145300
+    },
+    "tram": {
+      "name": "Mickey & Friends Parking Tram",
+      "durationMs": 549986
+    },
+    "monstersinc": {
+      "name": "Monster's Inc. Mike & Sulley to the Rescue!",
+      "durationMs": 229500
+    },
+    "toads": {
+      "name": "Mr Toad's Wild Ride",
+      "durationMs": 108900
+    },
+    "peoplemover": {
+      "name": "Peoplemover",
+      "durationMs": 717250
+    },
+    "peterpan": {
+      "name": "Peter Pan's Flight",
+      "durationMs": 140000
+    },
+    "pdj": {
+      "name": "Pinocchio's Daring Journey",
+      "durationMs": 168750
+    },
+    "pirates": {
+      "name": "Pirates of the Caribbean",
+      "durationMs": 841700
+    },
+    "palaround": {
+      "name": "Pixar Pal-A-Round",
+      "durationMs": 550000
+    },
+    "racers": {
+      "name": "Radiator Springs Racers",
+      "durationMs": 268499
+    },
+    "redcartrolley": {
+      "name": "Red Car Trolley",
+      "durationMs": 307000,
+      "note": "Per one-way leg; each leg is its own ride event. Good car ~307000 ms per leg. The defective car doesn't unmount riders at Buena Vista, so its outbound leg never records; only the return leg does (~300950 ms)."
+    },
+    "rogerrabbit": {
+      "name": "Roger Rabbit's Car-Toon Spin",
+      "durationMs": 167999
+    },
+    "symphonyswings": {
+      "name": "Silly Symphony Swings",
+      "durationMs": 87087
+    },
+    "swew": {
+      "name": "Snow White's Enchanted Wish",
+      "durationMs": 122001
+    },
+    "space": {
+      "name": "Space Mountain",
+      "durationMs": 180400
+    },
+    "splash": {
+      "name": "Splash Mountain",
+      "durationMs": 484000
+    },
+    "rotr": {
+      "name": "Star Wars: Rise of the Resistance",
+      "durationMs": 293700
+    },
+    "storybook": {
+      "name": "Storybook Land Canal Boats",
+      "durationMs": 303750
+    },
+    "tomsawyerraft": {
+      "name": "Tom Sawyer Island Rafts",
+      "durationMs": 129550
+    },
+    "tot": {
+      "name": "The Twilight Zone Tower of Terror",
+      "durationMs": 126000
+    }
+  }
+}

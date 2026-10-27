@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "com.bowzin.ife.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+      "ScoreboardMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
