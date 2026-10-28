@@ -24,7 +24,10 @@ public class DelayedActionsManager {
     public static void initialize() {
         IFEEvents.IMAGINE_FUN_JOIN_EVENT.register(()-> ticks_alive=0);
         ClientPlayConnectionEvents.DISCONNECT.register((handler, sender) -> ticks_alive=-1);
-        ClientTickEvents.END_CLIENT_TICK.register((client) -> onTick(client));
+        ClientTickEvents.END_CLIENT_TICK.register((client) -> {
+            onTick(client);
+            scheduledActions.clear();
+        });
     }
 
     private static void onTick(Minecraft client) {
