@@ -11,7 +11,7 @@ import net.imaginefun.session.ApiSession;
 public class HandshakeManager {
 
     public static void initialize() {
-        IFEEvents.IMAGINE_FUN_JOIN_EVENT.register(()->scheduleHandshake());
+        IFEEvents.IMAGINE_FUN_JOIN_EVENT.register((handler,sender,client)->scheduleHandshake());
     }
 
     private static void scheduleHandshake() {
