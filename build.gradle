@@ -5,7 +5,6 @@ plugins {
 
 repositories {
 	maven { url = "https://api.modrinth.com/maven" }            // ImagineFunUtils
-	maven { url = "https://maven.terraformersmc.com/releases" } // Mod Menu
 }
 
 loom {
@@ -26,10 +25,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	//Mod dependencies, IF, Modmenu
+	//Mod dependencies, IF
 	implementation("maven.modrinth:imaginefunutils:${project.if_version}")
-	implementation "com.terraformersmc:modmenu:${project.modmenu_version}"
-
 }
 
 processResources {
