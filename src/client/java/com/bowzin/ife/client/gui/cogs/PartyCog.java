@@ -64,9 +64,12 @@ public class PartyCog extends HudCog {
 
     private boolean onChat(Component component, boolean isOverlay) {
         String msg = component.getString();
+        if (msg.matches("ᴘᴀʀᴛʏ: You are not in a party!")) {
+            return !cogSettings.isEnabled();
+        }
         if (msg.matches("-*\\s*Party Members\\s*-*")) {
             nextIsMembers = true;
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if (nextIsMembers && msg.matches("\\((\\d+)/(\\d+)\\) (.+)")) {
             nextIsDivider = true;
@@ -77,32 +80,32 @@ public class PartyCog extends HudCog {
             this.owner = members[0];
             updateRows();
             setVisible(true);
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if (nextIsDivider && msg.matches("-+")) {
             nextIsDivider = false;
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if(msg.startsWith("ᴘᴀʀᴛʏ:")) {
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has joined your party!")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has left your party!")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been kicked from your party for being offline for .*")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been made a party moderator")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been promoted to party leader")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.equals("ᴘᴀʀᴛʏ: You have left your party") || msg.equals("ᴘᴀʀᴛʏ: Your party has been disbanded.") ) {
                 owner=null;
