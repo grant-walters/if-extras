@@ -2,6 +2,9 @@ package com.bowzin.ife.client.events;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.world.scores.Objective;
 
 public class IFEEvents {
@@ -18,8 +21,8 @@ public class IFEEvents {
             });
     public static final Event<ImagineFunJoinListener> IMAGINE_FUN_JOIN_EVENT = EventFactory.createArrayBacked(
             ImagineFunJoinListener.class,
-            listeners -> () -> {
-                for(ImagineFunJoinListener event : listeners) { event.onJoin(); }
+            listeners -> (handler,sender,client) -> {
+                for(ImagineFunJoinListener event : listeners) { event.onJoin(handler,sender,client); }
             }
     );
 
@@ -30,6 +33,6 @@ public class IFEEvents {
         void onDismount();
     }
     public interface ImagineFunJoinListener {
-        void onJoin();
+        void onJoin(ClientPacketListener handler, PacketSender sender, Minecraft client);
     }
 }
