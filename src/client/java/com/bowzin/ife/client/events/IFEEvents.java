@@ -16,11 +16,20 @@ public class IFEEvents {
             listeners -> () -> {
                 for(ImproperDismountListener event : listeners) { event.onDismount(); }
             });
+    public static final Event<ImagineFunJoinListener> IMAGINE_FUN_JOIN_EVENT = EventFactory.createArrayBacked(
+            ImagineFunJoinListener.class,
+            listeners -> () -> {
+                for(ImagineFunJoinListener event : listeners) { event.onJoin(); }
+            }
+    );
 
     public interface ScoreboardUpdateListener {
         void onUpdate(Objective objective);
     }
     public interface ImproperDismountListener {
         void onDismount();
+    }
+    public interface ImagineFunJoinListener {
+        void onJoin();
     }
 }
