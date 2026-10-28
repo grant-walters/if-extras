@@ -22,7 +22,7 @@ public class DelayedActionsManager {
     private static PriorityQueue<ScheduledAction> scheduledActions = new PriorityQueue<>(Comparator.comparingInt(ScheduledAction::tick));
 
     public static void initialize() {
-        IFEEvents.IMAGINE_FUN_JOIN_EVENT.register(()-> ticks_alive=0);
+        IFEEvents.IMAGINE_FUN_JOIN_EVENT.register((handler,sender,client)-> ticks_alive=0);
         ClientPlayConnectionEvents.DISCONNECT.register((handler, sender) -> ticks_alive=-1);
         ClientTickEvents.END_CLIENT_TICK.register((client) -> {
             onTick(client);
