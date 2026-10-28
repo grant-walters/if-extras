@@ -12,51 +12,37 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.chat.Component;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
 public class DelayedActionsManager {
-    private static final int HANDSHAKE_RETRY_TICKS = 100;
-    private static final int PARTY_CHECK_DELAY = 20;
     private static int ticks_alive = -1;
 
-    private static boolean watchForParty = false;
-
+    private record ScheduledAction(int tick, Runnable action) {}
+    private static PriorityQueue<ScheduledAction> scheduledActions = new PriorityQueue<>(Comparator.comparingInt(ScheduledAction::tick));
 
     public static void initialize() {
-        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
-            ServerData server = client.getCurrentServer();
-            if (server != null && server.ip.toLowerCase().contains("imaginefun.net")) {
-                ticks_alive = 0;
-            }
-        });
+        IFEEvents.IMAGINE_FUN_JOIN_EVENT.register((handler,sender,client)-> ticks_alive=0);
         ClientPlayConnectionEvents.DISCONNECT.register((handler, sender) -> ticks_alive=-1);
-        ClientTickEvents.END_CLIENT_TICK.register((client) -> onTick(client));
-        ClientReceiveMessageEvents.ALLOW_GAME.register((component,overlay)->onChat(component,overlay));
+        ClientTickEvents.END_CLIENT_TICK.register((client) -> {
+            onTick(client);
+            scheduledActions.clear();
+        });
     }
 
     private static void onTick(Minecraft client) {
         if(ticks_alive == -1) return;
         ticks_alive++;
-        if(ticks_alive == PARTY_CHECK_DELAY) {
-            client.player.connection.sendCommand("p list");
-            watchForParty = true;
-        }
-        if(!ApiSession.isActive() && ticks_alive % HANDSHAKE_RETRY_TICKS == 0) {
-            sendHandshake();
+        while(!scheduledActions.isEmpty() && scheduledActions.peek().tick() <= ticks_alive) {
+            scheduledActions.poll().action().run();
         }
     }
 
-    private static void sendHandshake() {
-        String version = FabricLoader.getInstance()
-                .getModContainer(ImagineFunUtils.MOD_ID)
-                .map(mod -> mod.getMetadata().getVersion().getFriendlyString())
-                .orElse("unknown");
-        ClientPlayNetworking.send(new HandshakePayload(version));
-    }
-
-    private static boolean onChat(Component component, boolean isOverlay) {
-        if(watchForParty && component.getString().equals("ᴘᴀʀᴛʏ: You are not in a party!")) {
-            watchForParty = false;
-            return false;
+    public static void schedule(int delay, Runnable action) {
+        if(ticks_alive==-1) {
+            scheduledActions.add(new ScheduledAction(delay,action));
+        } else {
+            scheduledActions.add(new ScheduledAction(ticks_alive+delay,action));
         }
-        return true;
     }
 }

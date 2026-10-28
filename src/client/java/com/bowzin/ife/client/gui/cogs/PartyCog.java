@@ -2,10 +2,13 @@ package com.bowzin.ife.client.gui.cogs;
 
 
 import com.bowzin.ife.client.config.IFEConfig;
+import com.bowzin.ife.client.events.DelayedActionsManager;
 import com.bowzin.ife.client.gui.HudCog;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
@@ -64,9 +67,15 @@ public class PartyCog extends HudCog {
 
     private boolean onChat(Component component, boolean isOverlay) {
         String msg = component.getString();
+        if (msg.matches("ᴘᴀʀᴛʏ: You are not in a party!")) {
+            this.owner = null;
+            this.members.clear();
+            updateRows();
+            return !cogSettings.isEnabled();
+        }
         if (msg.matches("-*\\s*Party Members\\s*-*")) {
             nextIsMembers = true;
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if (nextIsMembers && msg.matches("\\((\\d+)/(\\d+)\\) (.+)")) {
             nextIsDivider = true;
@@ -77,32 +86,32 @@ public class PartyCog extends HudCog {
             this.owner = members[0];
             updateRows();
             setVisible(true);
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if (nextIsDivider && msg.matches("-+")) {
             nextIsDivider = false;
-            if(cogSettings.isEnabled()) {return false;}
+            return !cogSettings.isEnabled();
         }
         if(msg.startsWith("ᴘᴀʀᴛʏ:")) {
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has joined your party!")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has left your party!")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been kicked from your party for being offline for .*")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been made a party moderator")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.matches("ᴘᴀʀᴛʏ: (.*) has been promoted to party leader")) {
                 Minecraft.getInstance().player.connection.sendCommand("p list");
-                if(cogSettings.isEnabled()) {return false;}
+                return !cogSettings.isEnabled();
             }
             if(msg.equals("ᴘᴀʀᴛʏ: You have left your party") || msg.equals("ᴘᴀʀᴛʏ: Your party has been disbanded.") ) {
                 owner=null;
@@ -139,5 +148,11 @@ public class PartyCog extends HudCog {
         return Component.literal(owner + "'s Party")
                 .withColor(ACCENT_COLOR)
                 .withStyle(ChatFormatting.BOLD);
+    }
+
+    private void onJoin(ClientPacketListener handler, PacketSender sender, Minecraft client) {
+        if(client.player!=null) {
+            DelayedActionsManager.schedule(20, () -> client.player.connection.sendCommand("p list"));
+        }
     }
 }

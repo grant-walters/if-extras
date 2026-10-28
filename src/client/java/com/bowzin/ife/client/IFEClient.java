@@ -5,6 +5,8 @@ import com.bowzin.ife.client.config.IFEConfig;
 import com.bowzin.ife.client.events.DelayedActionsManager;
 import com.bowzin.ife.client.gui.IFEGUI;
 import com.bowzin.ife.client.data.RideDurationsData;
+import com.bowzin.ife.client.network.ConnectionManager;
+import com.bowzin.ife.client.network.HandshakeManager;
 import net.fabricmc.api.ClientModInitializer;
 
 import org.slf4j.Logger;
@@ -21,6 +23,8 @@ public class IFEClient implements ClientModInitializer {
         RideDurationsData.initialize();
         IFEGUI.initialize();
         DelayedActionsManager.initialize();
+        ConnectionManager.initialize();
+        HandshakeManager.initialize();
     }
 
 }
